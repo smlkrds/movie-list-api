@@ -1,0 +1,1 @@
+web: gunicorn mv_list.wsgi --log-file -
