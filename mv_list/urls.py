@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
@@ -25,4 +27,4 @@ urlpatterns = [
     path('custom-list/create/<str:name>/', CreateCustomListAPIView.as_view(), name='create-custom-list'),
     path('custom-list/<str:name>/add-movie/', CustomListAddMovieAPIView.as_view(), name='custom-list-add-movie'),
     path('custom-list/<int:custom_list_id>/movies/', CustomListMoviesAPIView.as_view(), name='custom-list-movies'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
