@@ -22,6 +22,8 @@ from django.urls import path
 from api.views import MovieListAPIView, CustomListAddMovieAPIView, CustomListMoviesAPIView, CreateCustomListAPIView, \
     MovieDetailView
 
+app_name = 'api'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('movies/', MovieListAPIView.as_view(), name='movie-list'),
