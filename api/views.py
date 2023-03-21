@@ -12,14 +12,14 @@ class MovieListAPIView(generics.ListAPIView):
     serializer_class = MovieSerializer
 
 
-class MovieDetailView(generics.RetrieveAPIView):
+class MovieDetailView(generics.ListAPIView):
     serializer_class = MovieSerializer
-    lookup_field = 'primaryTitle'
 
-    def get_object(self):
-        primary_title = self.kwargs['primaryTitle']
-        obj = get_object_or_404(Movie, primaryTitle=primary_title)
-        return obj
+    def get_queryset(self):
+        title = self.kwargs['primaryTitle']
+        queryset = Movie.objects.filter(primaryTitle=title)
+        return queryset
+
 
 class CreateCustomListAPIView(APIView):
     def post(self, request, *args, **kwargs):
