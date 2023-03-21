@@ -19,11 +19,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from api.views import MovieListAPIView, CustomListAddMovieAPIView, CustomListMoviesAPIView, CreateCustomListAPIView
+from api.views import MovieListAPIView, CustomListAddMovieAPIView, CustomListMoviesAPIView, CreateCustomListAPIView, \
+    MovieDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movies/', MovieListAPIView.as_view(), name='movie-list'),
+    # path('movies/', MovieListAPIView.as_view(), name='movie-list'),
+    path('movies/', MovieDetailView.as_view(), name='movie_detail'),
     path('custom-list/create/<str:name>/', CreateCustomListAPIView.as_view(), name='create-custom-list'),
     path('custom-list/<str:name>/add-movie/', CustomListAddMovieAPIView.as_view(), name='custom-list-add-movie'),
     path('custom-list/<int:custom_list_id>/movies/', CustomListMoviesAPIView.as_view(), name='custom-list-movies'),

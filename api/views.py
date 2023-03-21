@@ -11,6 +11,15 @@ class MovieListAPIView(generics.ListAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
+
+class MovieDetailView(generics.RetrieveAPIView):
+    serializer_class = MovieSerializer
+
+    def get_queryset(self):
+        name = self.request.query_params.get('name')
+        queryset = Movie.objects.filter(name=name)
+        return queryset
+
 class CreateCustomListAPIView(APIView):
     def post(self, request, *args, **kwargs):
         name = kwargs.get('name')
