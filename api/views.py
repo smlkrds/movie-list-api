@@ -17,7 +17,7 @@ class MovieDetailView(generics.RetrieveAPIView):
 
     def get_queryset(self):
         name = self.request.query_params.get('name')
-        queryset = Movie.objects.filter(name=name)
+        queryset = Movie.objects.filter(primaryTitle=name)
         return queryset
 
 class CreateCustomListAPIView(APIView):
